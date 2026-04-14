@@ -1,0 +1,90 @@
+/* Reset e Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #fff; }
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Sticky */
+.main-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #e60005; /* Rosso Spiegel */
+    font-weight: 900;
+    font-size: 1.8rem;
+}
+
+.main-nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Layout Principale */
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Colonna main + sidebar */
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* Sidebar Sticky */
+.sidebar-sticky-box {
+    position: sticky;
+    top: 100px; /* Header altezza + gap */
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+/* Griglia Articoli */
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+/* Placeholder Immagini */
+.placeholder-img {
+    background: #ddd;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 15px;
+}
+
+/* Tipografia Card */
+.category { color: #e60005; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; }
+h1 { font-size: 2.5rem; margin-bottom: 10px; }
+h3 { font-size: 1.2rem; margin: 10px 0; }
+
+/* ── RESPONSIVITÀ ── */
+
+/* Tablet: Nascondiamo la sidebar o la mettiamo sotto */
+@media (max-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    .sidebar { display: none; } /* Molti siti news la nascondono su tablet */
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile: Tutto su una colonna */
+@media (max-width: 600px) {
+    .article-grid { grid-template-columns: 1fr; }
+    .main-nav { display: none; } /* Qui andrebbe un menu hamburger */
+    h1 { font-size: 1.8rem; }
+}
