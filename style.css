@@ -1,6 +1,16 @@
-/* Reset e Base */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #fff; }
+/* ── RESET E BASE ── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #fff;
+}
 
 .container {
     max-width: 1280px;
@@ -8,49 +18,154 @@ body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; backg
     padding: 0 20px;
 }
 
-/* Header Sticky */
-.main-header {
-    position: sticky;
-    top: 0;
-    background: white;
-    border-bottom: 1px solid #ddd;
-    padding: 20px 0;
-    z-index: 1000;
+/* ── HEADER ARANCIONE ── */
+.header {
+    background: #f44611; /* Arancione Spiegel */
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    color: #e60005; /* Rosso Spiegel */
+    color: white;
+    font-family: 'Arial Black', sans-serif;
     font-weight: 900;
     font-size: 1.8rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
 }
 
-.main-nav a {
-    margin-left: 20px;
+.header-destra {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link-abbonati {
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: white; /* Sottolineatura bianca */
+    text-underline-offset: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.box-login {
+    background: white;
+    padding: 6px 14px;
+}
+
+.box-login a {
+    color: #e8490f;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-/* Layout Principale */
+/* --- SOTTONAVIGAZIONE (Stile pulito come in foto) --- */
+.sub-nav {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0; /* La linea grigia sottile */
+    padding: 10px 0;
+}
+
+.sub-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spazio tra le scritte */
+}
+
+.sub-nav li {
+    font-size: 13px; /* Piccolo come in foto */
+    color: #000;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* Linea verticale di separazione (opzionale, tra alcune voci) */
+.sub-nav li:not(:last-child) {
+    border-right: 1px solid #eee;
+}
+
+/* --- FASCIA 3 ARTICOLI (Sotto la riga) --- */
+.top-news-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.top-news-item {
+    padding: 20px;
+    border-right: 1px solid #eee; /* Riga verticale tra gli articoli */
+}
+
+.top-news-item:last-child { border-right: none; }
+
+.top-news-item h4 {
+    font-size: 16px;
+    font-weight: 800; /* Molto grassetto */
+    line-height: 1.3;
+    color: #000;
+}
+
+/* 3 articoli in alto */
+.top-news-item .time {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    display: block;
+}
+.top-news-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.top-news-item {
+    padding: 20px;
+    border-right: 1px solid #eee; /* Riga verticale tra gli articoli */
+}
+
+.top-news-item:last-child { border-right: none; }
+
+.top-news-item h4 {
+    font-size: 16px;
+    font-weight: 800; /* Molto grassetto */
+    line-height: 1.3;
+    color: #000;
+}
+
+.top-news-item .time {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ── LAYOUT PRINCIPALE ── */
 .main-layout {
     display: grid;
-    grid-template-columns: 1fr 300px; /* Colonna main + sidebar */
+    grid-template-columns: 1fr 300px;
     gap: 40px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
-/* Sidebar Sticky */
 .sidebar-sticky-box {
     position: sticky;
-    top: 100px; /* Header altezza + gap */
+    top: 100px;
     background: #f4f4f4;
     padding: 20px;
 }
 
-/* Griglia Articoli */
+/* ── GRIGLIA ARTICOLI ── */
 .article-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -58,7 +173,6 @@ body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; backg
     margin-top: 40px;
 }
 
-/* Placeholder Immagini */
 .placeholder-img {
     background: #ddd;
     width: 100%;
@@ -66,25 +180,28 @@ body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; backg
     margin-bottom: 15px;
 }
 
-/* Tipografia Card */
-.category { color: #e60005; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; }
+/* ── TIPOGRAFIA CARD ── */
+.category {
+    color: #e60005;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
 h1 { font-size: 2.5rem; margin-bottom: 10px; }
 h3 { font-size: 1.2rem; margin: 10px 0; }
 
 /* ── RESPONSIVITÀ ── */
-
-/* Tablet: Nascondiamo la sidebar o la mettiamo sotto */
 @media (max-width: 1024px) {
     .main-layout {
         grid-template-columns: 1fr;
     }
-    .sidebar { display: none; } /* Molti siti news la nascondono su tablet */
+    .sidebar { display: none; }
     .article-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Mobile: Tutto su una colonna */
 @media (max-width: 600px) {
     .article-grid { grid-template-columns: 1fr; }
-    .main-nav { display: none; } /* Qui andrebbe un menu hamburger */
+    .sub-nav ul { flex-wrap: wrap; } /* I box vanno a capo se lo schermo è stretto */
     h1 { font-size: 1.8rem; }
 }
