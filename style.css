@@ -1,3 +1,11 @@
+/* font tipico di spiegel */
+@font-face {
+    font-family: 'Spiegel-serif';
+    src: url('fonts/spiegel-serif-font.woff2') format('woff2');
+    font-weight: 800; /* Definisci il peso del file che stai caricando */
+    font-style: normal;
+}
+
 /* ── RESET ── */
 * {
     box-sizing: border-box;
@@ -6,7 +14,6 @@
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: gray;
     background: white;
@@ -36,7 +43,7 @@ body {
 
 .logo {
     color: white;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Spiegel-serif', serif;
     font-weight: 900;
     font-size: 1.8rem;
     letter-spacing: -2px;
@@ -50,6 +57,7 @@ body {
 }
 
 .link-abbonati {
+    font-family: "Arial", serif;
     color: white;
     text-decoration: underline;
     text-decoration-color: white;
@@ -64,6 +72,7 @@ body {
 }
 
 .box-login a {
+    font-family: Arial, serif;
     color: #f44611;
     text-decoration: none;
     font-size: 14px;
@@ -84,6 +93,7 @@ body {
 }
 
 .sub-nav li {
+    font-family: "Arial", serif;
     font-size: 13px;
     color: black;
     font-weight: 500;
@@ -119,6 +129,7 @@ body {
 }
 
 .top-news-item h4 {
+    font-family: "Arial", serif;
     font-size: 15px;
     font-weight: 800;
     line-height: 1.3;
@@ -126,6 +137,7 @@ body {
 }
 
 .top-news-item .time {
+    font-family: "Arial", serif;
     font-size: 12px;
     color: gray;
     margin-top: 6px;
@@ -147,15 +159,24 @@ body {
     gap: 16px;
     background-color: transparent;
 }
-/*colonne ai lati*/
+/*colonne vuote ai lati*/
 .side-column {
     background-color: transparent;
 }
 
 /* Ogni blocco articolo è un rettangolo bianco */
 .content-block {
-    background: #fff;
+    background: white;
     border: 1px solid #e0e0e0;
+}
+.block__title {
+    font-family: 'Spiegel-serif', serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: black;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
 }
 
 /* block hero è il tipo di articolo con immagine che occupa metà spazio a dx e testo a sx */
@@ -173,24 +194,17 @@ body {
     justify-content: space-between;
 }
 
-.block-label {
-    font-size: 14px;
+.block-hero__label {
+    font-size: 15px;
     color: black;
-    font-weight: 700;
+    font-weight: 500;
     display: block;
     margin-bottom: 8px;
 }
 
-.block-hero__title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 1.9rem;
-    font-weight: 800;
-    line-height: 1.2;
-    color: #000;
-    margin-bottom: 16px;
-}
 
 .block-hero__desc {
+    font-family: "Arial", serif;
     font-size: 15px;
     color: #333;
     line-height: 1.55;
@@ -213,6 +227,41 @@ body {
     object-fit: cover;
     display: block;
     padding: 10px;
+}
+/* block-big-hero è l'articolo con immagine grandissima in alto e titolo e descrizione sotto*/
+.block-big-hero {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* div dentro cui sta l'immagine*/
+.block-big-hero__image {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    padding: 20px 20px 2px 20px;
+    margin-bottom: 0;
+}
+
+.block-big-hero__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.block-big-hero__label{
+    font-size: 15px;
+    color: black;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* Testo sotto l'immagine */
+.block-big-hero__text {
+    padding: 5px 30px 30px 30px;
+    background: white;
 }
 
 .article-grid {
