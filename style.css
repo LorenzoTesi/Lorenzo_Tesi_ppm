@@ -264,34 +264,70 @@ body {
     background: white;
 }
 
+/* article grid e card per fare il reticolo 1*3 di articoli con immagine in alto*/
 .article-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    gap: 1px;
+    background-color: lightgray;
+    border: 1px solid white;
+    margin-top: 16px;
 }
 
 .card {
-    background: #fff;
-    padding: 16px;
-    border: 1px solid #e0e0e0;
+    background: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .card:not(:last-child) {
-    border-right: none; /* evita bordi doppi */
+    border-right: none;
 }
-
-.placeholder-img {
-    background: #ddd;
+/* Immagine della card */
+.card-img {
     width: 100%;
     aspect-ratio: 16 / 9;
+    object-fit: cover;
     margin-bottom: 12px;
 }
 
-h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 6px;
+/* Titolo della card */
+.card h3 {
+    font-family: 'Spiegel-serif', serif;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-weight: 800;
     color: #000;
+    margin-bottom: 10px;
+}
+
+/* testo */
+.card p {
+    font-family: "Arial", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 12px;
+    flex-grow: 1;
+}
+
+/* Footer della card (Autore e Tempo di lettura) */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Arial", sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    padding-top: 10px;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* ── RESPONSIVITÀ ── */
