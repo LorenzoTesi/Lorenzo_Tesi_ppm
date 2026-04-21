@@ -1,11 +1,3 @@
-/* font tipico di spiegel */
-@font-face {
-    font-family: 'Spiegel-serif';
-    src: url('fonts/spiegel-serif-font.woff2') format('woff2');
-    font-weight: 800; /* Definisci il peso del file che stai caricando */
-    font-style: normal;
-}
-
 /* ── RESET ── */
 * {
     box-sizing: border-box;
@@ -43,7 +35,7 @@ body {
 
 .logo {
     color: white;
-    font-family: 'Spiegel-serif', serif;
+    font-family:"Roboto Slab", serif;
     font-weight: 900;
     font-size: 1.8rem;
     letter-spacing: -2px;
@@ -108,15 +100,31 @@ body {
 
 /* le 3 notizie in alto */
 .top-news-bar {
-    background: white;
-    border-bottom: 2px solid white;
+    border-top: 1px solid white;
+    border-bottom: 2px solid lightgray;
+    padding: 15px 0;
 }
 
 .top-news-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: white;
+    gap: 0;
+}
+
+.top-news-item {
+    padding: 4px 24px;
+    position: relative;
+}
+
+/* divisore sinistro su ogni item tranne il primo */
+.top-news-item:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    bottom: 15%;
+    width: 1px;
+    background: #ddd;
 }
 
 .top-news-item {
@@ -167,16 +175,31 @@ body {
 /* Ogni blocco articolo è un rettangolo bianco */
 .content-block {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 2px solid lightgray;
 }
 .block__title {
-    font-family: 'Spiegel-serif', serif;
+    font-family: 'Roboto Slab', serif;
     font-size: 1.9rem;
     font-weight: 800;
     line-height: 1.2;
     color: black;
     letter-spacing: -1px;
     margin-bottom: 16px;
+}
+.block__author {
+    font-size: 13px;
+    color: #777;
+    display: block;
+    margin-top: 12px;
+    font-family: "Arial", serif;
+}
+.block__label {
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+    font-family: Arial, serif;
 }
 
 /* block hero è il tipo di articolo con immagine che occupa metà spazio a dx e testo a sx */
@@ -194,14 +217,6 @@ body {
     justify-content: space-between;
 }
 
-.block-hero__label {
-    font-size: 15px;
-    color: black;
-    font-weight: 500;
-    display: block;
-    margin-bottom: 8px;
-}
-
 
 .block-hero__desc {
     font-family: "Arial", serif;
@@ -210,12 +225,7 @@ body {
     line-height: 1.55;
 }
 
-.block-author {
-    font-size: 13px;
-    color: #777;
-    display: block;
-    margin-top: 12px;
-}
+
 
 .block-hero__image {
     overflow: hidden;
@@ -264,38 +274,85 @@ body {
     background: white;
 }
 
-/* article grid e card per fare il reticolo 1*3 di articoli con immagine in alto*/
+/* Rettangolo bianco contenitore */
+.white-block-section {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 24px 20px;
+    margin-top: 16px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.section-title {
+    color: #f44611;
+    font-family: "Arial", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
+
+.section-title .arrow {
+    font-size: 1.2rem;
+    margin-left: 5px;
+    font-weight: 400;
+}
+
+.all-articles {
+    color: #000;
+    font-family: "Arial", sans-serif;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 400;
+}
+
+/* Griglia con gap per gestire le linee */
 .article-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: lightgray;
-    border: 1px solid white;
-    margin-top: 16px;
+    gap: 30px; /* Spazio uniforme tra le colonne */
+    background-color: transparent;
+    position: relative;
 }
 
 .card {
     background: white;
-    padding: 20px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
 }
 
-.card:not(:last-child) {
-    border-right: none;
+/* Linee verticali sottili tra le card */
+.card:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background-color: #e0e0e0;
 }
-/* Immagine della card */
+
 .card-img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     margin-bottom: 12px;
+    display: block;
 }
 
-/* Titolo della card */
 .card h3 {
-    font-family: 'Spiegel-serif', serif;
+    font-family: 'Roboto Slab', serif;
     font-size: 1.25rem;
     line-height: 1.2;
     font-weight: 800;
@@ -303,7 +360,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* testo */
 .card p {
     font-family: "Arial", sans-serif;
     font-size: 0.95rem;
@@ -313,7 +369,6 @@ body {
     flex-grow: 1;
 }
 
-/* Footer della card (Autore e Tempo di lettura) */
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -324,10 +379,51 @@ body {
     padding-top: 10px;
 }
 
-.card-meta {
+/*opinion box è il tipo di articolo rettangolare piccolo con l'immagine circolare dell'autore accanto*/
+.opinion-box {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    padding: 30px;
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.opinion-content {
+    flex: 1;
+}
+.opinion-text {
+    font-family: "Arial", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Avatar circolare dell'autore */
+.opinion-avatar {
+    flex-shrink: 0;
+}
+
+.opinion-avatar img {
+    margin-right: 130px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.opinion-footer {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    padding-top: 5px;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    color: #666;
 }
 
 /* ── RESPONSIVITÀ ── */
@@ -347,26 +443,11 @@ body {
     .block-hero {
         grid-template-columns: 1fr;
     }
-    .block-hero__image {
-        height: 220px;
-    }
-    .article-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
     .article-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
-    .sub-nav ul {
-        flex-wrap: wrap;
-    }
-    .top-news-grid {
-        grid-template-columns: 1fr;
-    }
-    .top-news-item:not(:last-child) {
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
+    .card::before {
+        display: none;
     }
 }
