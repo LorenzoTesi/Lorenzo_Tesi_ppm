@@ -71,33 +71,63 @@ body {
     font-weight: 700;
 }
 
+/* elenco orizzontale sotto il banner */
 .sub-nav {
     background: white;
-    border-bottom: 1px solid white;
-    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    padding: 0;
 }
 
-.sub-nav ul {
+.nav-scroll-container {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
 }
-
-.sub-nav li {
-    font-family: "Arial", serif;
+.nav-text {
+    font-family: "Arial", sans-serif;
     font-size: 13px;
     color: black;
     font-weight: 500;
     cursor: pointer;
-    padding: 9px 16px;
-    white-space: nowrap;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
 }
 
-.sub-nav li:not(:last-child) {
-    border-right: 1px solid #ddd;
+.nav-text:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+.line-left {
+    position: relative;
 }
 
+.line-left::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: #ddd;
+}
+.line-right {
+    position: relative;
+}
+
+.line-right::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: #ddd;
+}
 /* le 3 notizie in alto */
 .top-news-bar {
     border-top: 1px solid lightgray;
@@ -620,7 +650,15 @@ body {
     color: #888;
     font-size: 11px;
 }
-
+/* hover sui titolo delle notizie li rende da neri a grigi */
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover {
+    color: darkgray;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
 
 
 /* ── RESPONSIVITÀ ── */
