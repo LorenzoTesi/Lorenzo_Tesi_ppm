@@ -314,8 +314,8 @@ body {
 
 .section-header {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    align-items: baseline; /* Allinea le basi del testo */
+    gap: 20px;             /* Spazio tra i vari link */
     margin-bottom: 20px;
     padding: 0;
 }
@@ -323,10 +323,24 @@ body {
 .section-title {
     color: #f44611;
     font-family: "Arial", sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
+    font-size: 1.5rem; /* Un po' più grande come in foto */
+    font-weight: 900;
+}
+
+/* Selettore per il PRIMO link dopo il titolo */
+.section-title + .all-articles {
+    margin-left: auto; /* Questo crea lo spazio vuoto centrale spingendo i link a destra */
+}
+
+.all-articles {
+    color: #000;
+    font-family: "Arial", sans-serif;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    font-weight: 500;
+    white-space: nowrap; /* Impedisce al testo di andare a capo */
 }
 
 .section-title .arrow {
@@ -335,14 +349,6 @@ body {
     font-weight: 400;
 }
 
-.all-articles {
-    color: #000;
-    font-family: "Arial", sans-serif;
-    font-size: 0.85rem;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-weight: 400;
-}
 
 /* Griglia con gap per gestire le linee */
 .article-grid {
@@ -489,6 +495,7 @@ body {
 .footer-games__grid {
     display: flex;
     gap: 16px;
+    justify-content: center;
     flex-wrap: nowrap;
     overflow: hidden;
     margin-bottom: 24px;
@@ -663,6 +670,72 @@ h4:hover {
     transition: color 0.2s ease;
 }
 
+/* griglia 2 colonne */
+.article-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: 0;
+}
+.card-2col {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+}
+
+.card-2col:nth-child(even)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5%;
+    bottom: 5%;
+    width: 1px;
+    background-color: #e0e0e0;
+}
+
+.card-2col .card-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.card-2col__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-2col__body .block__title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+/* riga titolo + avatar */
+.card-2col__title-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.card-2col__title-row .block__title {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.card-2col__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
 /* ── RESPONSIVITÀ ── */
 
 /* Tablet e schermi medi */
@@ -675,126 +748,151 @@ h4:hover {
     }
     .page-body > .content-area {
         grid-column: 1;
-        padding: 10px 20px; /* meno padding laterale */
+        padding: 10px 20px;
+    }
+    /* via di mezzo per i titoli tra desktop e mobile */
+    .block__title {
+        font-size: 1.5rem;
+    }
+    .section-title {
+        font-size: 1.2rem;
     }
 }
 
+/* mobile */
 @media (max-width: 768px) {
-
-    /* nel banner solo logo e link abbonati con testi ridotti*/
-    .logo {
-        font-size: 1.2rem;
-        letter-spacing: -1px;
-    }
-    .link-abbonati{
-        font-size: 11px
-    }
-    .banner {
-        padding: 10px 0;
-    }
-    .box-login {
-        display: none;
+    .page-body {
+        display: block !important;
+        width: 100%;
     }
 
     .page-body > .content-area {
-        padding: 0;
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow-x: hidden;
+    }
+/*nel banner il logo e box abbonamento vengono rimpiccioliti e box login scompare */
+    .banner {
+        padding: 6px 0;
+    }
+
+    .logo {
+        font-size: 1rem !important;
+        letter-spacing: -1px;
+    }
+
+    .link-abbonati {
+        font-size: 9px !important;
+    }
+
+    .box-login {
+        display: none !important;
+    }
+
+    /* come nell'originale le top news rimanngono in orizzontale e chi non entra viene tagliato fuori*/
+    .top-news-bar {
+        padding: 10px 0;
+        overflow: hidden;
+    }
+
+    .top-news-grid {
+        display: flex;
+        flex-direction: row;
+        width: max-content;
         gap: 0;
     }
 
-    /* Top news: scorrimento orizzontale */
-    .top-news-grid {
+    .top-news-item {
+        padding: 8px 16px;
+        width: 280px;
+        border-bottom: none;
+    }
+
+    .top-news-item:not(:first-child)::before {
         display: block;
     }
-    .top-news-item:not(:first-child)::before {
-        display: none;
-    }
-    .top-news-item {
-        border-bottom: 1px solid #ddd;
-    }
-    .top-news-item .time {
-        display: none;
+
+    .top-news-item h4 {
+        font-size: 11px !important;
+        line-height: 1.2;
     }
 
-    /* nei block-hero immagine va sopra */
-    .block-hero {
-        grid-template-columns: 1fr;
-        border-left: none;
-        border-right: none;
+    .section-title {
+        font-size: 1rem;
     }
-    .block-hero__image {
+/* le scritte ai lati degli header scompaiono*/
+    .all-articles {
+        display: none !important;
+    }
+
+    .article-grid, .article-grid-2col {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+/* le notizie diveengono tutte del tipo immagine grande in alto e testo sotto con larghezza massima*/
+    .block-hero, .block-big-hero, .card-2col, .card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 15px;
+        background: white;
+    }
+
+    .card:last-child, .card-2col:last-child {
+        border-bottom: none;
+    }
+
+    .block-hero__image,
+    .block-big-hero__image,
+    .card-2col .card-img,
+    .card-img {
+        width: 100% !important;
+        height: 200px !important;
+        object-fit: cover;
         order: -1;
-        height: 250px;
-        padding: 0;
-    }
-    .block-hero__image img {
-        padding: 0;
+        margin-bottom: 10px;
     }
 
-    /* immagine ridotta nei big-hero */
-    .block-big-hero {
-        border-left: none;
-        border-right: none;
-    }
-    .block-big-hero__image {
-        height: 250px;
-        padding: 0;
-    }
-    .block-big-hero__text {
-        padding: 20px;
+    .block-hero__text,
+    .block-big-hero__text,
+    .card-2col__body,
+    .card-body {
+        width: 100% !important;
+        padding: 10px 15px;
+        box-sizing: border-box;
     }
 
-    /* Griglia articoli: verticale */
+    .block__title,
+    .card-2col__body .block__title,
+    .card h3 {
+        font-size: 1rem !important;
+        line-height: 1.2;
+        margin-bottom: 5px;
+    }
+/* le immagini circolari scompaiono*/
+    .card-2col__avatar, .opinion-avatar, .card::before, .card-2col::before {
+        display: none !important;
+    }
+
     .white-block-section {
+        padding: 10px;
         border-left: none;
         border-right: none;
         margin-top: 0;
-        padding: 20px;
-    }
-    .article-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-    .card::before {
-        display: none;
-    }
-    .card {
-        border-bottom: 1px solid #eee;
-        padding-bottom: 20px;
-    }
-    .card:last-child {
-        border-bottom: none;
-    }
-    .opinion-box {
-        display: block;
-        padding: 15px;
-    }
-    .opinion-avatar {
-        float: right;
-        margin-left: 15px;
-        margin-bottom: 5px;
-    }
-    .opinion-avatar img {
-        width: 70px;
-        height: 70px;
-        margin-right: 0;
-    }
-    .opinion-box .block__label {
-        font-size: 11px;
-        margin-bottom: 4px;
     }
 
-    .opinion-box .block__title {
-        font-size: 1.1rem;
-        line-height: 1.2;
-        margin-bottom: 8px;
+    .section-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 15px;
     }
-    .opinion-text {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        color: #333;
-    }
-    .opinion-footer {
-        clear: both;
-        padding-top: 10px;
+
+    .section-title + .all-articles {
+        margin-left: 0;
     }
 }
