@@ -142,7 +142,7 @@ body {
 }
 
 .top-news-item {
-    padding: 4px 24px;
+    padding: 4px 20px;
     position: relative;
 }
 
@@ -158,7 +158,7 @@ body {
 }
 
 .top-news-item {
-    padding: 18px 16px;
+    padding: 1px 16px 18px;
     background-color: white;
 }
 
@@ -169,7 +169,7 @@ body {
 .top-news-item h4 {
     font-family: "Arial", serif;
     font-size: 15px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.3;
     color: black;
 }
@@ -736,6 +736,96 @@ h4:hover {
     margin-top: 4px;
 }
 
+/* Contenitore principale a 3 colonne */
+.article-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background-color: transparent;
+}
+
+/* Colonna singola */
+.column-3col {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    position: relative;
+    background-color: white;
+}
+
+.column-3col:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 20px;
+    width: 1px;
+    background-color: #e0e0e0;
+}
+
+.column-3col__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-item:last-child {
+    border-bottom: none;
+}
+
+.article-item .block__title {
+    font-size: 1rem !important;
+    line-height: 1.25;
+    margin-bottom: 6px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: black;
+}
+
+.column-header {
+    margin-bottom: 10px;
+}
+
+.column-header .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.article-item .card-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.article-item__body {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.article-item__title-wrap {
+    flex: 1;
+}
+
+.article-item .card-2col__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.article-item .card-footer {
+    padding-top: 8px;
+    margin-top: auto;
+}
+
 /* ── RESPONSIVITÀ ── */
 
 /* Tablet e schermi medi */
@@ -773,7 +863,7 @@ h4:hover {
         margin: 0 !important;
         overflow-x: hidden;
     }
-/*nel banner il logo e box abbonamento vengono rimpiccioliti e box login scompare */
+    /*nel banner il logo e box abbonamento vengono rimpiccioliti e box login scompare */
     .banner {
         padding: 6px 0;
     }
@@ -822,7 +912,7 @@ h4:hover {
     .section-title {
         font-size: 1rem;
     }
-/* le scritte ai lati degli header scompaiono*/
+    /* le scritte ai lati degli header scompaiono*/
     .all-articles {
         display: none !important;
     }
@@ -833,7 +923,7 @@ h4:hover {
         width: 100%;
         gap: 0;
     }
-/* le notizie diveengono tutte del tipo immagine grande in alto e testo sotto con larghezza massima*/
+    /* le notizie diveengono tutte del tipo immagine grande in alto e testo sotto con larghezza massima*/
     .block-hero, .block-big-hero, .card-2col, .card {
         display: flex;
         flex-direction: column;
@@ -858,6 +948,37 @@ h4:hover {
         margin-bottom: 10px;
     }
 
+    /* Rimuove il padding dai contenitori degli articoli */
+    .white-block-section,
+    .block-hero,
+    .block-big-hero,
+    .card-2col,
+    .card {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Forza l'immagine a ignorare eventuali padding residui e stare attaccata ai bordi */
+    .block-hero__image img,
+    .block-big-hero__image img,
+    .card-2col .card-img,
+    .card-img {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+    .block-hero__text,
+    .block-big-hero__text,
+    .card-2col__body,
+    .card-body,
+    .section-header {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+
     .block-hero__text,
     .block-big-hero__text,
     .card-2col__body,
@@ -873,10 +994,6 @@ h4:hover {
         font-size: 1rem !important;
         line-height: 1.2;
         margin-bottom: 5px;
-    }
-/* le immagini circolari scompaiono*/
-    .card-2col__avatar, .opinion-avatar, .card::before, .card-2col::before {
-        display: none !important;
     }
 
     .white-block-section {
@@ -894,5 +1011,58 @@ h4:hover {
 
     .section-title + .all-articles {
         margin-left: 0;
+    }
+
+    /* si passa da 3 a 2 colonne*/
+    .article-grid-3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .column-3col {
+        padding: 0 10px;
+    }
+    /* La terza colonna va a capo */
+    .column-3col:last-child {
+        border-top: 1px solid #e0e0e0;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .column-3col:nth-child(2)::before {
+        display: block;
+    }
+    .column-3col:nth-child(3)::before {
+        display: none;
+    }
+    .article-item h3 {
+        font-size: 0.95rem !important;
+    }
+    .block-big-hero__image {
+        padding: 0 !important;
+        height: 220px !important;
+    }
+    .opinion-box {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        padding: 16px !important;
+        gap: 12px;
+    }
+
+    .opinion-avatar {
+        order: 2;
+        flex-shrink: 0;
+    }
+
+    .opinion-avatar img {
+        width: 70px !important;
+        height: 70px !important;
+        margin-right: 0 !important;
+    }
+
+    .opinion-content {
+        order: 1;
+        flex: 1;
+        margin-right: 0 !important;
+        min-width: 0;
     }
 }
